@@ -56,6 +56,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .di{padding-top:22px;display:flex;flex-direction:column;gap:26px}
 .dl{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#8a96aa;margin-bottom:12px}
 .role-text{font-size:14px;color:#4e5a70}
+.video-link{display:inline-flex;align-items:center;gap:5px;font-size:13px;color:#4e5a70;text-decoration:none;border:1px solid #d0d5dd;border-radius:6px;padding:6px 12px;transition:all .2s}.video-link:hover{color:#1a1a2e;border-color:#1a1a2e}
 .st{width:100%;border-collapse:collapse;font-size:13px}
 .st tr{border-bottom:1px solid #eef0f5}.st tr:last-child{border-bottom:none}
 .st td{padding:8px 0;color:#4e5a70;vertical-align:top}.sk{color:#8a96aa!important;width:130px;padding-right:16px}
@@ -262,6 +263,7 @@ const PROJECTS = [
     id:'atmos',category:'immersive',categoryLabel:'이머시브',
     title:'3D 애니메이션 이머시브 믹싱',subtitle:'Dolby Atmos · 2023.12',
     role:'사운드 디자인 · Dolby Atmos 믹스',
+    videoLink:{url:'http://naver.me/x0U1Sc5K',label:'최종본 영상 보기'},
     tags:['Dolby Atmos 7.1.4','Pro Tools','바이노럴 렌더링'],
     imgs:[
       {src:'images/Dolby Atmos 7.1.4 이머시브 스튜디오에서 믹스 작업 중.jpg',caption:'Dolby Atmos 7.1.4 이머시브 스튜디오에서 믹스 작업 중'},
@@ -342,6 +344,7 @@ const PROJECTS = [
     }).join('');
     const ls = p.lessons.map(l=>`<li>${l}</li>`).join('');
     const roleBlock = p.role?`<div class="db"><p class="dl">담당 역할</p><p class="role-text">${p.role}</p></div>`:'';
+    const videoLinkBlock = p.videoLink?`<div class="db"><a href="${p.videoLink.url}" target="_blank" rel="noopener noreferrer" class="video-link">${p.videoLink.label} <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>`:'';
     const taskImgBlock = p.taskImg?`<div class="db"><div class="img-grid">${imgEl(p.taskImg)}</div></div>`:'';
     const tsBlock = ts?`<div class="db"><p class="dl">트러블슈팅</p><div class="tsl">${ts}</div></div>`:'';
     function imgEl(i){return `<div class="img-item"><img src="${i.src}" alt="${i.caption}" loading="lazy" onclick="lbOpen(this)" data-cap="${i.caption}"><p class="img-cap">${i.caption}</p></div>`;}
@@ -359,6 +362,7 @@ const PROJECTS = [
       </div>
       <div class="pd"><div class="di">
         ${roleBlock}
+        ${videoLinkBlock}
         ${heroImgBlock}
         <div class="db"><p class="dl">시스템 구성</p><table class="st">${sys}</table></div>
         ${sysImgBlock}
